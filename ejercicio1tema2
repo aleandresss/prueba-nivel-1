@@ -1,0 +1,55 @@
+#Crea una clase llamada Punto con sus dos coordenadas X e Y.
+#Añade un método constructor para crear puntos fácilmente. Si no se reciben una coordenada, su valor será cero.
+
+from math import sqrt
+
+class Punto:
+    def _init_(self,X=0,Y=0): # metodo constructor de puntos
+        self.X = X
+        self.Y = Y
+
+    def cuadrante(self):
+        if self.X == 0 and self.Y == 0:
+            print("El punto se encuentra en el origen de coordenadas.")
+        elif self.X < 0 and self.Y <0:
+            print("El punto ({},{}) pertenece al tercer cuadrante".format(self.X,self.Y))
+        elif self.X > 0 and self.Y <0:
+            print("El punto ({},{}) pertenece al cuarto cuadrante".format(self.X,self.Y))
+        elif self.X > 0 and self.Y >0:
+            print("El punto ({},{}) pertenece al primer cuadrante".format(self.X,self.Y))
+        elif self.X < 0 and self.Y >0:
+            print("El punto ({},{}) pertenece al segundo cuadrante".format(self.X,self.Y))
+        elif self.X == 0 and self.Y !=0:
+            print("El punto se encuentra sobre el eje Y: ({},{})".format(self.X,self.Y))
+        elif self.X != 0 and self.Y ==0:
+            print("El punto se encuentra sobre el eje X: ({},{})".format(self.X,self.Y))
+        elif self.X == 0 and self.Y == 0:
+            print("El punto se encuentra en el origen (0,0)")
+
+    def vector(self,p2): # punto1, punto2
+        X_vector = p2.X - self.X
+        Y_vector = p2.Y - self.Y
+        return "Vector: ({},{})".format(X_vector,Y_vector)
+
+    def distancia(self,p2): #punto1, punto 2
+        distancia = sqrt(((p2.X - self.X)*2) + ((p2.Y - self.Y)*2))
+        return "Distancia: "+ str(round(distancia,3))
+
+    def _str_(self):
+        return "Punto: ({},{})".format(self.X,self.Y)
+
+puntoA = Punto(2,3)
+puntoB = Punto(5,5)
+puntoC = Punto(-3,-1)
+puntoD = Punto(0,0)
+
+print("Punto1: ",puntoA)
+print("Punto2: ",puntoB)
+print("Punto3: ",puntoC)
+print("Punto4: ",puntoD)
+
+print("Vector P1,P2",puntoA.vector(puntoB))
+print("Vector P1,P2",puntoB.vector(puntoA))
+
+print(puntoA.distancia(puntoB))
+print(puntoB.distancia(puntoA))
